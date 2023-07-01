@@ -7,7 +7,7 @@
       :placeholder="textinput_placeholder"
       class="login-component-textinput input"
     />
-    <span class="login-component-text2">{{ text1 }}</span>
+    <span class="login-component-text1">{{ text1 }}</span>
     <input type="text" :placeholder="textinput_placeholder1" class=" login-component-textinput input" />
     <button type="button" class="login-component-button button">
       {{ button }}
@@ -76,9 +76,6 @@ export default {
 .login-component-text {
   color: rgb(48, 48, 48);
   align-self: center;
-  margin-bottom: 32px;
-}
-.login-component-text1 {
   margin-bottom: 16px;
 }
 .login-component-textinput {
@@ -87,9 +84,10 @@ export default {
   border: 1px solid #303030;
   border-radius: 8px;
 }
-.login-component-text2 {
-  margin-top: 16px;
-  margin-bottom: 16px;
+.login-component-text1 {
+  margin-top: 24px;
+  color: rgb(48, 48, 48);
+  align-self: flex-start;
 }
 .login-component-button {
   transition: 0.3s;

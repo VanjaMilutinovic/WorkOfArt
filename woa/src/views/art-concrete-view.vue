@@ -1,9 +1,56 @@
 <template>
   <div class="art-concrete-view-container">
     <app-header rootClassName="header-root-class-name1"></app-header>
-    <single-art-component></single-art-component>
-    <art-all-offers-component></art-all-offers-component>
-    <app-gallery></app-gallery>
+    <SingleArtComponent
+      :img_desc='this.art.data[this.lang].description' 
+      :image_src='this.art.image_src'
+      :name='this.art.data[this.lang].title'
+      :author='this.art.data[this.lang].author'>
+    </SingleArtComponent>
+
+    <div class="offers-and-messages">
+      <button class="art-concrete-view-button button" @click="view()">
+        {{ viewAll[lang] }}
+      </button>
+
+    <div class="art-concrete-view-container1">
+      <span class="art-concrete-view-text08">
+        <span>{{enterOffer[lang]}}</span>
+        <br />
+        
+      </span>
+      <textarea
+        :placeholder="offer"
+        class="art-concrete-view-textarea textarea"
+      ></textarea>
+      <button class="art-concrete-view-button button" @click="offer()">
+        {{ offerButton[lang] }}
+      </button>
+    </div>
+    <div class="art-concrete-view-container2">
+      <span class="art-concrete-view-text14">
+        <span>{{ enterMessage[lang] }}</span>
+        <br />
+        
+      </span>
+      <textarea
+        :placeholder="msg"
+        class="art-concrete-view-textarea textarea"
+      ></textarea>
+      <button class="art-concrete-view-button button" @click="send()">
+        {{ sendButton[lang] }}
+      </button>
+    </div>
+    </div>
+    
+    
+    <div v-if="this.allOff==true">
+      <ArtAllOffersComponent 
+        :title='this.art.data[this.lang].title'  
+      ></ArtAllOffersComponent>
+    </div>
+    
+    <AppGallery :id='this.id'></AppGallery>
     <app-footer rootClassName="footer-root-class-name1"></app-footer>
   </div>
 </template>
@@ -14,6 +61,7 @@ import SingleArtComponent from '../components/single-art-component'
 import ArtAllOffersComponent from '../components/art-all-offers-component'
 import AppGallery from '../components/gallery'
 import AppFooter from '../components/footer'
+import AllArts from '../data/arts.js'
 
 export default {
   name: 'ArtConcreteView',
@@ -24,19 +72,121 @@ export default {
     AppGallery,
     AppFooter,
   },
-  metaInfo: {
-    title: 'ArtConcreteView - Work Of Art',
-    meta: [
-      {
-        property: 'og:title',
-        content: 'ArtConcreteView - Work Of Art',
-      },
-    ],
+  props: {
+    id: {
+      type: String,
+      default: 1
+    },
   },
+  data(){
+    return{
+      lang: 0,
+      arts: [],
+      art: {},
+      allOff: false,
+      viewAll: ['Pogledaj sve ponude i poruke', 'View all offers and messages'],
+      offerButton: ['Ponudi', 'Offer'],
+      sendButton: ['Posalji', 'Send'],
+      enterOffer: ['Unesite svoju ponudu', 'Enter your offer'],
+      enterMessage: ['Unesite svoju poruku', 'Enter your message']
+    }
+  },
+  created(){
+    if(localStorage.getItem('lang')==null){
+      localStorage.setItem('lang', 0);
+    }
+    this.lang = JSON.parse(localStorage.getItem('lang'))
+
+    if (localStorage.getItem('arts')==null)
+      localStorage.setItem('arts', JSON.stringify(AllArts))
+    
+    this.arts = AllArts
+    
+    this.art = this.arts.find(art => art.id == this.id);
+    
+  },
+  methods:{
+    view(){
+      this.allOff = !this.allOff;
+      //TODO filtrirati ponude i poruke samo za datu umetninu
+    },
+    offer(){
+      //TODO poslati ponudu za dato delo (dodati u offers koji je u localTSorage)
+      //samo za ulogovane korisnike (localStorage.getItem("user") vraca nesto sto nije null)
+      //tip = 0
+    },
+    send(){
+      //TODO isto kao offer samo je tip 1
+
+    }
+  }
 }
 </script>
 
 <style scoped>
+.art-concrete-view-container2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.art-concrete-view-text14 {
+  margin-top: 32px;
+  text-align: center;
+  padding-left: 48px;
+  margin-bottom: 32px;
+  padding-right: 48px;
+}
+
+.art-concrete-view-container1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.art-concrete-view-text08{
+  margin-top: 32px;
+  text-align: center;
+  padding-left: 48px;
+  margin-bottom: 32px;
+  padding-right: 48px;
+}
+.art-concrete-view-button {
+  transition: 0.3s;
+  margin: 16px;
+  padding: 12px;
+  color: #ffffff;
+  
+  align-self: center;
+  font-style: normal;
+  font-weight: 600;
+  background-color: #303030;
+  border-radius: 8px;
+}
+.art-concrete-view-button:hover {
+  transform: scale(1.02);
+}
+.art-concrete-view-textarea{
+  width: 100%;
+  margin: 24px;
+  max-width: 100%;
+  min-width: auto;
+  border: 1px solid #303030;
+  border-radius: 8px;
+}
+.offers-and-messages{
+  width: 100%;
+  display: flex;
+  padding: 48px;
+  padding-top: 0px;
+  position: relative;
+  min-height: 80vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
 .art-concrete-view-container {
   width: 100%;
   display: flex;

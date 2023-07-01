@@ -3,29 +3,26 @@
     <div class="gallery-container">
       <div class="gallery-container1">
         <div class="gallery-container2">
-          <art-gallery-component
-            rootClassName="rootClassName2"
-          ></art-gallery-component>
+          <ArtGalleryComponent
+            :image_src='this.img1'
+          ></ArtGalleryComponent>
         </div>
         <div class="gallery-container3">
-          <art-gallery-component
-            image_src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDN8fGZvb2R8ZW58MHx8fHwxNjI2NDQ5NjUy&amp;ixlib=rb-1.2.1&amp;h=1000"
-            rootClassName="rootClassName3"
-          ></art-gallery-component>
+          <ArtGalleryComponent
+            :image_src='this.img2'
+          ></ArtGalleryComponent>
         </div>
       </div>
       <div class="gallery-container4">
-        <art-gallery-component
-          image_src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDIzfHxmb29kfGVufDB8fHx8MTYyNjQ0OTY1Mg&amp;ixlib=rb-1.2.1&amp;h=1000"
-          rootClassName="rootClassName"
-        ></art-gallery-component>
+        <ArtGalleryComponent
+            :image_src='this.img3'
+          ></ArtGalleryComponent>
       </div>
     </div>
     <div class="gallery-container5">
-      <art-gallery-component
-        image_src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDE5fHxmb29kfGVufDB8fHx8MTYyNjQ0OTY1Mg&amp;ixlib=rb-1.2.1&amp;h=1000"
-        rootClassName="rootClassName4"
-      ></art-gallery-component>
+      <ArtGalleryComponent
+            :image_src='this.img4'
+          ></ArtGalleryComponent>
     </div>
   </div>
 </template>
@@ -37,10 +34,28 @@ export default {
   name: 'Gallery',
   props: {
     rootClassName: String,
+    id: {
+      type: String,
+      default: 1
+    }
   },
   components: {
     ArtGalleryComponent,
   },
+  data(){
+    return{
+      img1: '',
+      img2: '',
+      img3: '',
+      img4: ''
+    }
+  },
+  created(){
+    this.img1 = '/' + this.id + '/0.jpg';
+    this.img2 = '/' + this.id + '/1.jpg';
+    this.img3 = '/' + this.id + '/2.jpg';
+    this.img4 = '/' + this.id + '/3.jpg';
+  }
 }
 </script>
 

@@ -1,36 +1,20 @@
 <template>
-  <header
-    data-role="Accordion"
-    class="header-header"
-    v-bind:class="rootClassName"
-  >
+  <header data-role="Header" class="header-header" v-bind:class="rootClassName">
     <img :alt="image_alt" :src="image_src" class="header-image" />
     <div class="header-separator"></div>
-    <div class="header-container">
-      <div data-role="AccordionHeader" class="header-accordion-header">
-        <svg viewBox="0 0 1024 1024" class="header-icon">
-          <path
-            d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
-          ></path>
-        </svg>
-      </div>
-      <div data-role="AccordionContent" class="header-accordion-content">
-        <div class="header-nav">
-          <navigation-links-component
-            rootClassName="rootClassName20"
-          ></navigation-links-component>
-        </div>
-      </div>
-      <div class="header-container1">
-        <nav class="header-nav1">
-          <navigation-links-component
-            rootClassName="rootClassName19"
-          ></navigation-links-component>
-        </nav>
-        <button type="button" class="header-button button">{{ button }}</button>
-      </div>
+
+    <div class="header-container1">
+      <nav class="header-nav1">
+        <navigation-links-component v-if="renderComponent"
+          rootClassName="rootClassName19"
+        ></navigation-links-component>
+      </nav>
+      <button type="button" class="header-button button"
+              @click="changeLang()">{{ this.button }}</button>
     </div>
+     
   </header>
+
 </template>
 
 <script>
@@ -56,6 +40,36 @@ export default {
   components: {
     NavigationLinksComponent,
   },
+  data(){
+    return{
+      button: (localStorage.getItem("lang")==0)?"ENG":"SRB",
+      renderComponent: true,
+    }
+  },
+  methods: {
+    changeLang(){
+      if (this.button == 'ENG'){
+        this.button = 'SRB'
+        localStorage.setItem("lang", 1);
+      }
+      else{
+        this.button = 'ENG'     
+        localStorage.setItem("lang", 0);
+      }
+      this.forceRerender();
+      window.location.reload();
+    },
+    async forceRerender() {
+      // Remove MyComponent from the DOM
+      this.renderComponent = false;
+
+			// Wait for the change to get flushed to the DOM
+      await this.$nextTick();
+
+      // Add the component back in
+      this.renderComponent = true;
+    }
+  }
 }
 </script>
 
@@ -64,7 +78,6 @@ export default {
   width: 100%;
   display: flex;
   position: relative;
-  max-width: 1440px;
   align-items: center;
   padding-top: 32px;
   padding-left: 48px;
@@ -74,7 +87,7 @@ export default {
   background-color: #edc0f1;
 }
 .header-image {
-  height: 2rem;
+  max-width: 90%;
 }
 .header-separator {
   width: 100%;
@@ -83,38 +96,7 @@ export default {
   margin-bottom: 24px;
   background-color: #303030;
 }
-.header-container {
-  flex: 0 0 auto;
-  width: 100%;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.header-accordion-header {
-  display: none;
-  align-items: center;
-  flex-direction: column;
-}
-.header-icon {
-  width: 15%;
-  height: 15%;
-  display: none;
-}
-.header-accordion-content {
-  display: none;
-  overflow: hidden;
-  max-height: 0;
-  transition: 0.3s ease-in-out;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-}
-.header-nav {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
+
 .header-container1 {
   display: flex;
   flex-direction: row;
@@ -146,44 +128,7 @@ export default {
   background-color: #303030;
   border-radius: 8px;
 }
-.header-root-class-name {
-  top: 0px;
-  left: 0px;
-  position: static;
-}
-.header-root-class-name1 {
-  top: 0px;
-  left: 0px;
-  position: static;
-}
-.header-root-class-name2 {
-  top: 0px;
-  left: 0px;
-  position: static;
-}
-.header-root-class-name3 {
-  top: 0px;
-  left: 0px;
-  position: static;
-}
-.header-root-class-name4 {
-  position: 0px;
-}
 
-.header-root-class-name6 {
-  top: 0px;
-  left: 0px;
-  position: static;
-}
-
-@media(max-width: 991px) {
-  .header-container {
-    justify-content: center;
-  }
-  .header-nav {
-    padding-top: 16px;
-  }
-}
 @media(max-width: 767px) {
   .header-header {
     padding-left: 32px;
@@ -193,20 +138,8 @@ export default {
     margin-top: 24px;
     margin-bottom: 24px;
   }
-  .header-accordion-header {
-    display: flex;
-    align-items: flex-start;
-  }
-  .header-icon {
-    width: 15%;
-    height: 15%;
-    display: flex;
-  }
-  .header-accordion-content {
-    display: flex;
-  }
   .header-nav1 {
-    display: none;
+    flex-direction: column;
   }
 }
 @media(max-width: 479px) {
@@ -217,18 +150,6 @@ export default {
     margin-top: 16px;
     margin-bottom: 16px;
   }
-  .header-container {
-    height: 100%;
-    align-self: center;
-    align-items: stretch;
-    justify-content: space-between;
-  }
-  .header-accordion-header {
-    height: 100%;
-    margin-top: 0px;
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 0px;
-  }
+  
 }
 </style>

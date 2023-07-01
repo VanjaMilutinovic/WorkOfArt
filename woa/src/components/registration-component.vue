@@ -3,26 +3,25 @@
     class="registration-component-login-component"
     v-bind:class="rootClassName"
   >
-    <h1 class="registration-component-text">{{ heading }}</h1>
-    <span class="registration-component-text1">{{ username }}</span>
+    <h1 class="registration-component-text1">{{ heading }}</h1>
+    <span class="registration-component-text">{{ username }}</span>
     <input
       type="text"
       :placeholder="textinput_placeholder"
       class="registration-component-textinput input"
     />
-    <span class="registration-component-text2">{{ password }}</span>
+    <span class="registration-component-text">{{ password }}</span>
     <input type="text" :placeholder="textinput_placeholder1" class="input registration-component-textinput" />
-    <span class="registration-component-text3">{{ repeatPassword }}</span>
+    <span class="registration-component-text">{{ repeatPassword }}</span>
     <input type="text" :placeholder="textinput_placeholder12" class="input registration-component-textinput" />
-    <span class="registration-component-text4">{{ name }}</span>
+    <span class="registration-component-text">{{ name }}</span>
     <input type="text" :placeholder="textinput_placeholder11" class="input registration-component-textinput" />
     <button type="button" class="registration-component-button button">
       {{ button }}
     </button>
     <router-link to="/login-view" class="registration-component-navlink">
-      <span class="registration-component-text5">
+      <span class="registration-component-text">
         Vec imas nalog?
-        <span v-html="raw0gfk"></span>
       </span>
       <span class="registration-component-text6">Uloguj se!</span>
     </router-link>
@@ -77,7 +76,7 @@ export default {
   },
   data() {
     return {
-      raw0gfk: ' ',
+      
     }
   },
 }
@@ -98,11 +97,13 @@ export default {
   background-color: #edc0f1;
 }
 .registration-component-text {
+  margin-top: 24px;
   color: rgb(48, 48, 48);
-  align-self: center;
-  margin-bottom: 32px;
+  align-self: flex-start;
 }
 .registration-component-text1 {
+  color: rgb(48, 48, 48);
+  align-self: center;
   margin-bottom: 16px;
 }
 .registration-component-textinput {
@@ -110,18 +111,6 @@ export default {
   padding: 8px;
   border: 1px solid #303030;
   border-radius: 8px;
-}
-.registration-component-text2 {
-  margin-top: 16px;
-  margin-bottom: 16px;
-}
-.registration-component-text3 {
-  margin-top: 16px;
-  margin-bottom: 16px;
-}
-.registration-component-text4 {
-  margin-top: 16px;
-  margin-bottom: 16px;
 }
 .registration-component-button {
   transition: 0.3s;
@@ -138,9 +127,7 @@ export default {
   align-self: center;
   text-align: center;
 }
-.registration-component-text5 {
-  text-decoration: none;
-}
+
 .registration-component-text6 {
   text-decoration: underline;
 }

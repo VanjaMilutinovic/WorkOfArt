@@ -31,7 +31,6 @@ export default {
   width: 100%;
   display: flex;
   position: relative;
-  max-width: 1440px;
   align-items: center;
   padding-top: 32px;
   padding-left: 48px;

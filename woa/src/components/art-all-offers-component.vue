@@ -1,19 +1,13 @@
 <template>
   <div class="art-all-offers-component-art-offers" v-bind:class="rootClassName">
-    <h1 class="art-all-offers-component-text">{{ heading }}</h1>
+    <h1 class="art-all-offers-component-text">{{ this.heading[this.lang] }}</h1>
     <div class="art-all-offers-component-container">
       <art-offer-component
         profile_src="https://images.unsplash.com/photo-1611232658409-0d98127f237f?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDIzfHxwb3J0cmFpdCUyMHdvbWFufGVufDB8fHx8MTYyNjQ1MDU4MQ&amp;ixlib=rb-1.2.1&amp;h=1200"
         rootClassName="rootClassName3"
       ></art-offer-component>
     </div>
-    <div class="art-all-offers-component-container1">
-      <art-offer-component
-        image_src="https://images.unsplash.com/photo-1595565312451-23051ab0666c?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDI0fHxwb3J0cmFpdCUyMHdvbWFufGVufDB8fHx8MTYyNjQ1MDU4MQ&amp;ixlib=rb-1.2.1&amp;h=1000"
-        profile_src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDExfHxwb3J0cmFpdCUyMHdvbWFufGVufDB8fHx8MTYyNjQ1MDU4MQ&amp;ixlib=rb-1.2.1&amp;h=1200"
-        rootClassName="rootClassName"
-      ></art-offer-component>
-    </div>
+    
   </div>
 </template>
 
@@ -23,15 +17,24 @@ import ArtOfferComponent from './art-offer-component'
 export default {
   name: 'ArtAllOffersComponent',
   props: {
-    rootClassName: String,
-    heading: {
+    title:{
       type: String,
-      default: 'Vase ponude i poruke',
-    },
+      default: 1
+    }
+    
   },
   components: {
     ArtOfferComponent,
   },
+  data(){
+    return{
+      lang: 0,
+      heading: ['Sve ponude i poruke', 'All offers and messages']
+    }
+  },
+  created(){
+    this.lang = localStorage.getItem('lang')
+  }
 }
 </script>
 

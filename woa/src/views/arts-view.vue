@@ -4,30 +4,31 @@
     <div class="arts-view-testimonial">
       <div class="arts-view-container1">
         <h1 class="arts-view-text">
-          <span>Umetnine</span>
+          <span>{{this.title[this.lang]}}</span>
           <br />
         </h1>
-        <span class="arts-view-text3">Neki tekstic</span>
+        <span class="arts-view-text3">{{this.text[this.lang]}}</span>
         <div class="arts-view-container2">
-          <router-link to="/art-overview-view">
-            <art-type-component
-              picture_src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDF8fHdvbWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNjI2NDUxOTgy&amp;ixlib=rb-1.2.1&amp;h=1200"
-              rootClassName="rootClassName2"
-              class="arts-view-component1"
-            ></art-type-component>
+          <router-link to="/art-overview-view/0">
+            <ArtTypeComponent
+              :picture_src='this.src[0]'
+              :type='this.img[this.lang]'
+              :class="arts-view-component3"
+            ></ArtTypeComponent>
           </router-link>
-          <router-link to="/art-overview-view">
-            <art-type-component
-              rootClassName="rootClassName"
-              class="arts-view-component2"
-            ></art-type-component>
+          <router-link to="/art-overview-view/1">
+            <ArtTypeComponent
+              :picture_src='this.src[1]'
+              :type='this.scu[this.lang]'
+              :class="arts-view-component3"
+            ></ArtTypeComponent>
           </router-link>
-          <router-link to="/art-overview-view">
-            <art-type-component
-              picture_src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDd8fHdvbWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNjI2NDUxOTgy&amp;ixlib=rb-1.2.1&amp;h=1200"
-              rootClassName="rootClassName1"
-              class="arts-view-component3"
-            ></art-type-component>
+          <router-link to="/art-overview-view/2">
+            <ArtTypeComponent
+              :picture_src='this.src[2]'
+              :type='this.oth[this.lang]'
+              :class="arts-view-component3"
+            ></ArtTypeComponent>
           </router-link>
         </div>
       </div>
@@ -48,15 +49,20 @@ export default {
     ArtTypeComponent,
     AppFooter,
   },
-  metaInfo: {
-    title: 'ArtsView - Work Of Art',
-    meta: [
-      {
-        property: 'og:title',
-        content: 'ArtsView - Work Of Art',
-      },
-    ],
+  data(){
+    return{
+      title: ['Umetnine', 'Arts'],
+      text: ['Neki tekstic', 'Some text'],
+      src: ["/1/0.jpg", "/4/0.jpg", "/7/0.jpg"],
+      img: ['SLIKE', 'PICTURES'],
+      scu: ['SKULPTURE', 'SCULPTURES'],
+      oth: ['OSTALO', 'OTHER'],
+      lang: 0
+    }
   },
+  created(){
+    this.lang = localStorage.getItem('lang')
+  }
 }
 </script>
 

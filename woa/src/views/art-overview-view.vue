@@ -58,6 +58,12 @@ export default {
     ArtOverviewCardComponent1,
     AppFooter,
   },
+  props: {
+    type: {
+      type: String,
+      default: 0
+    },
+  },
   metaInfo: {
     title: 'ArtOverviewView - Work Of Art',
     meta: [

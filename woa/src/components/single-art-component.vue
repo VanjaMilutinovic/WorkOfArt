@@ -7,49 +7,9 @@
       <span class="single-art-component-text02">
         <br />
         <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-          volutpat turpis.
-          <span v-html="raw6req"></span>
+          {{img_desc}}
         </span>
-        <span><span v-html="raw8wtg"></span></span>
-        <span>
-          Mauris luctus rutrum mi ut rhoncus. Integer in dignissim tortor.
-          <span v-html="rawua0a"></span>
-        </span>
-        <span><span v-html="rawnjtx"></span></span>
       </span>
-      <button class="single-art-component-button button">{{ viewAll }}</button>
-    </div>
-    <div class="single-art-component-container1">
-      <span class="single-art-component-text08">
-        <span>Unesite s</span>
-        <span>voju ponudu</span>
-        <br />
-        <span><span v-html="rawu8iw"></span></span>
-        <span><span v-html="rawdd9x"></span></span>
-      </span>
-      <textarea
-        :placeholder="offer"
-        class="single-art-component-textarea textarea"
-      ></textarea>
-      <button class="single-art-component-button button">
-        {{ offerButton }}
-      </button>
-    </div>
-    <div class="single-art-component-container2">
-      <span class="single-art-component-text14">
-        <span>Unesite svoju poruku</span>
-        <br />
-        <span><span v-html="rawm3nu"></span></span>
-        <span><span v-html="rawboao"></span></span>
-      </span>
-      <textarea
-        :placeholder="msg"
-        class="single-art-component-textarea textarea"
-      ></textarea>
-      <button class="single-art-component-button button">
-        {{ sendButton }}
-      </button>
     </div>
   </div>
 </template>
@@ -58,34 +18,21 @@
 export default {
   name: 'SingleArtComponent',
   props: {
+    img_desc: {
+      type: String,
+      default: `The Mona Lisa, created by the renowned artist Leonardo da Vinci, 
+            is an iconic masterpiece that captivates viewers with its enigmatic smile and subtle charm. 
+            This timeless portrait, known for its impeccable technique and mysterious allure,
+             continues to intrigue and inspire art enthusiasts around the world.`
+    },
     image_alt: {
       type: String,
       default: 'image',
-    },
-    viewAll: {
-      type: String,
-      default: 'pogledaj sve ponude',
-    },
-    offerButton: {
-      type: String,
-      default: 'ponudi',
-    },
-    sendButton: {
-      type: String,
-      default: 'posalji',
-    },
-    msg: {
-      type: String,
-      default: 'ex. my message',
     },
     image_src: {
       type: String,
       default:
         'https://images.unsplash.com/photo-1471086569966-db3eebc25a59?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDIwfHxtaW5pbWFsaXNtJTIwcGxhbnR8ZW58MHx8fHwxNjI2MTgyODMw&ixlib=rb-1.2.1&w=1200',
-    },
-    offer: {
-      type: String,
-      default: 'ex. 500$',
     },
     name: {
       type: String,
@@ -98,14 +45,6 @@ export default {
   },
   data() {
     return {
-      raw6req: ' ',
-      raw8wtg: ' ',
-      rawua0a: ' ',
-      rawnjtx: ' ',
-      rawu8iw: ' ',
-      rawdd9x: ' ',
-      rawm3nu: ' ',
-      rawboao: ' ',
     }
   },
 }
@@ -120,6 +59,7 @@ export default {
   width: 100%;
   display: flex;
   padding: 48px;
+  padding-bottom: 0px;
   position: relative;
   min-height: 80vh;
   align-items: center;
@@ -152,68 +92,9 @@ export default {
   margin-bottom: 32px;
   padding-right: 48px;
 }
-.single-art-component-button {
-  transition: 0.3s;
-  margin: 16px;
-  padding: 12px;
-  color: #ffffff;
-  
-  align-self: center;
-  font-style: normal;
-  font-weight: 600;
-  background-color: #303030;
-  border-radius: 8px;
-}
-.single-art-component-button:hover {
-  transform: scale(1.02);
-}
-.single-art-component-container1 {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.single-art-component-text08 {
-  margin-top: 32px;
-  text-align: center;
-  padding-left: 48px;
-  margin-bottom: 32px;
-  padding-right: 48px;
-}
-.single-art-component-textarea {
-  width: 100%;
-  margin: 24px;
-  max-width: 100%;
-  min-width: auto;
-  border: 1px solid #303030;
-  border-radius: 8px;
-}
-.single-art-component-container2 {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.single-art-component-text14 {
-  margin-top: 32px;
-  text-align: center;
-  padding-left: 48px;
-  margin-bottom: 32px;
-  padding-right: 48px;
-}
-.single-art-component-button2 {
-  margin: 24px;
-  transition: 0.3s;
-  padding-top: 16px;
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 16px;
-}
-.single-art-component-button2:hover {
-  transform: scale(1.02);
-}
+
+
+
 @media(max-width: 991px) {
   .single-art-component-single-art-component {
     flex-direction: column;
@@ -224,7 +105,7 @@ export default {
   .single-art-component-container {
     align-items: center;
     margin-right: 0px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
   .single-art-component-text {
     text-align: center;
@@ -238,7 +119,7 @@ export default {
   .single-art-component-container1 {
     align-items: center;
     margin-right: 0px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
   .single-art-component-text08 {
     text-align: center;
@@ -246,7 +127,7 @@ export default {
   .single-art-component-container2 {
     align-items: center;
     margin-right: 0px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
   .single-art-component-text14 {
     text-align: center;

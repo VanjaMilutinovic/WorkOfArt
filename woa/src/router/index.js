@@ -33,8 +33,9 @@ const routes = [
   },
   {
     name: 'ArtOverviewView',
-    path: '/art-overview-view',
+    path: '/art-overview-view/:type',
     component: ArtOverviewView,
+    props: true
   },
   {
     name: 'AboutUsView',
@@ -48,8 +49,9 @@ const routes = [
   },
   {
     name: 'ArtConcreteView',
-    path: '/art-concrete-view',
+    path: '/art-concrete-view/:id',
     component: ArtConcreteView,
+    props: true
   },
   {
     name: 'ArtsView',

@@ -62,7 +62,7 @@ export default {
   justify-content: center;
 }
 .home-page-offer-component-image {
-  width: 500px;
+  max-width: 80%;
   object-fit: cover;
 }
 .home-page-offer-component-container {
