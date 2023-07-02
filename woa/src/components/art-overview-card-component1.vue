@@ -7,7 +7,7 @@
       <span class="art-overview-card-component1-text">{{ author1 }}</span>
       <h1 class="art-overview-card-component1-text1">{{ title }}</h1>
       <span class="art-overview-card-component1-text2">
-        <span class="art-overview-card-component1-text3">procitaj vise</span>
+        <span class="art-overview-card-component1-text3">{{ more[lang]}}</span>
         <br />
       </span>
     </div>
@@ -42,6 +42,15 @@ export default {
       default: 'Zvezdana noc',
     },
   },
+  data(){
+    return{
+      lang: 0,
+      more: ['Procitajte vise', 'Read more']
+    }
+  },
+  created(){
+    this.lang=localStorage.getItem('lang')
+  }
 }
 </script>
 

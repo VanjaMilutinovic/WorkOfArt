@@ -99,8 +99,10 @@ export default {
     }
     else
       this.offers = JSON.parse(localStorage.getItem('offers'))
-    //TODO izdvojiti 3 najskorije ponude!
-    this.offersHome = this.offers.slice(0,3)
+    this.offersHome = this.offers
+    .filter(offer => offer.type === 0) 
+    .sort((a, b) => b.id - a.id) 
+    .slice(0, 3);
   },
   methods:{
     

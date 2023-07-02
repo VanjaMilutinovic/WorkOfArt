@@ -13,13 +13,7 @@
         </svg>
       </div>
       <span class="artist-card-component-text">
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lorem lorem,
-          malesuada in metus vitae, scelerisque accumsan ipsum. Nam pellentesque
-          nulla leo, sagittis vehicula sem commodo nec.
-        </span>
-        <br />
-        <span></span>
+        {{description}} <br />
       </span>
       <div class="artist-card-component-container1">
         <svg
@@ -32,8 +26,9 @@
         </svg>
       </div>
     </div>
-    <span class="artist-card-component-text3">Van Gogh</span>
-    <span class="artist-card-component-text4">Preuzmi spisak dela</span>
+    <span class="artist-card-component-text3">{{ artist }}</span>
+    <span class="artist-card-component-text4"
+          @click="downloadPDF()">{{ download[lang] }}</span>
   </div>
 </template>
 
@@ -47,15 +42,42 @@ export default {
     },
     image_src: {
       type: String,
-      default:
-        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDd8fHBvcnRyYWl0fGVufDB8fHx8MTYyNjM3ODk3Mg&ixlib=rb-1.2.1&h=1000',
+      default: '/artists/1.jpg',
     },
+    description: {
+      type: String,
+      default: 'description'
+    },
+    artist: {
+      type: String,
+      default: 'artist name'
+    },
+    file_src: {
+      type: String,
+      default: '/files/1.pdf'
+    }
   },
+  data(){
+    return{
+      lang: 0,
+      download: ['Preuzmi spisak dela', 'Download arts list']
+    }
+  },
+  created(){
+    this.lang = localStorage.getItem('lang')
+  
+  },
+  methods:{
+    downloadPDF(){
+      window.open(this.file_src)
+    }
+  }
 }
 </script>
 
 <style scoped>
 .artist-card-component-testimonial {
+  box-shadow: 15px 15px 20px 0px rgba(18, 18, 18, 0.1);
   width: 100%;
   display: flex;
   padding: 48px;
@@ -64,6 +86,7 @@ export default {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  
 }
 .artist-card-component-image {
   width: 288px;

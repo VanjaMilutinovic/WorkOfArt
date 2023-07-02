@@ -17,24 +17,23 @@
       <span class="art-concrete-view-text08">
         <span>{{enterOffer[lang]}}</span>
         <br />
-        
       </span>
       <textarea
-        :placeholder="offer"
+        placeholder="offer"
         class="art-concrete-view-textarea textarea"
       ></textarea>
       <button class="art-concrete-view-button button" @click="offer()">
         {{ offerButton[lang] }}
       </button>
     </div>
-    <div class="art-concrete-view-container2">
+    <div class="art-concrete-view-container1">
       <span class="art-concrete-view-text14">
         <span>{{ enterMessage[lang] }}</span>
         <br />
         
       </span>
       <textarea
-        :placeholder="msg"
+        placeholder="message"
         class="art-concrete-view-textarea textarea"
       ></textarea>
       <button class="art-concrete-view-button button" @click="send()">

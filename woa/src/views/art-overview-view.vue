@@ -3,13 +3,14 @@
     <app-header rootClassName="header-root-class-name2"></app-header>
     <div class="art-overview-view-container1">
       <div class="art-overview-view-container2">
-        <select class="art-overview-view-select">
-          <option value="Izaberi">Izaberi</option>
-          <option value="Po umetniku">Po umetniku</option>
-          <option value="Po nazivu">Po nazivu</option>
+        <select class="art-overview-view-select" name="choice" v-model="choice">
+          <option value="0" >{{choices[0][lang]}}</option>
+          <option value="1">{{choices[1][lang]}}</option>
+          <option value="2">{{choices[2][lang]}}</option>
         </select>
-        <button type="button" class="art-overview-view-button button">
-          Sortiraj
+        <button type="button" class="art-overview-view-button button"
+                @click="sortBy()">
+          {{sort[lang]}}
         </button>
       </div>
       <div class="art-overview-view-container3">
@@ -17,32 +18,28 @@
           type="text"
           placeholder="ex. Van Gogh"
           class="art-overview-view-textinput input"
+          name="filter" v-model="filter"
         />
-        <button type="button" class="art-overview-view-button button">
-          Pretrazi
+        <button type="button" class="art-overview-view-button button"
+                @click="searchBy()">
+          {{search[lang]}}
         </button>
       </div>
     </div>
-    <div class="art-overview-view-blog">
-      <div class="art-overview-view-container4">
-        <router-link to="/art-concrete-view" class="art-overview-view-navlink">
-          <art-overview-card-component1
-            rootClassName="rootClassName1"
+    <div class="art-overview-view-blog" v-for="art in this.artShowing" :key="art.id">
+      <div class="art-overview-view-container4" v-if="art.type==this.type">
+        <router-link :to="`/art-concrete-view/${art.id}`" class="art-overview-view-navlink">
+          <ArtOverviewCardComponent1
             class="art-overview-view-component1"
-          ></art-overview-card-component1>
+            :image_src='art.image_src'
+            :author1='art.data[this.lang].author'
+            :title='art.data[this.lang].title'
+          ></ArtOverviewCardComponent1>
         </router-link>
       </div>
-      <div class="art-overview-view-container5">
-        <router-link to="/art-concrete-view" class="art-overview-view-navlink1">
-          <art-overview-card-component1
-            image_src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDl8fHdvcmt8ZW58MHx8fHwxNjI2NDUwNzky&amp;ixlib=rb-1.2.1&amp;h=1000"
-            rootClassName="rootClassName2"
-            class="art-overview-view-component2"
-          ></art-overview-card-component1>
-        </router-link>
-      </div>
+      
     </div>
-    <app-footer rootClassName="footer-root-class-name2"></app-footer>
+    <app-footer></app-footer>
   </div>
 </template>
 
@@ -50,7 +47,8 @@
 import AppHeader from '../components/header'
 import ArtOverviewCardComponent1 from '../components/art-overview-card-component1'
 import AppFooter from '../components/footer'
-
+import AllArt from '../data/arts.js'
+ 
 export default {
   name: 'ArtOverviewView',
   components: {
@@ -64,15 +62,50 @@ export default {
       default: 0
     },
   },
-  metaInfo: {
-    title: 'ArtOverviewView - Work Of Art',
-    meta: [
-      {
-        property: 'og:title',
-        content: 'ArtOverviewView - Work Of Art',
-      },
-    ],
+  data(){
+    return{
+      artShowing: [],
+      allArts: [],
+      search: ['Pretrazi', 'Search'],
+      sort: ['Sortiraj', 'Sort'],
+      lang: 0,
+      choice: 0,
+      filter: '',
+      choices: [['Izaberi', 'Choose'], 
+                ['Po umetniku', 'By artist'],
+                ['Po nazivu', 'By title']]
+    }
   },
+  created(){
+    this.allArts = AllArt
+    this.artShowing = this.allArts.filter(art => art.type == this.type)
+    this.lang = localStorage.getItem('lang')
+  },
+  methods: {
+    sortBy(){
+      //TODO
+      alert(this.choice);
+      switch (this.choice){
+        case 0: 
+          this.artShowing = AllArt;
+          break;
+        case 1:
+          //po imenu autora
+          break;
+        case 2:
+          //po nazivu
+          break;
+      }
+      
+
+    },
+    searchBy(){
+      //TODO filter je ili ime autora ili ime umetnine
+      //mozes direktno poredenje ne moras se muciti
+      alert(this.filter);
+    }
+  
+  }
 }
 </script>
 

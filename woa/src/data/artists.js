@@ -131,9 +131,9 @@ const artists = [
         img_src: 'artists/7.jpg',
         data: [
             //in serbian language
-            { name: 'Nepoznati umetnik', bio: '' },
+            { name: 'Nepoznati umetnik', bio: 'Ovde mozete pronaci sva dela za koja je umetnik nepoznat' },
             //in english language
-            { name: 'Unknown Artist', bio: '' }
+            { name: 'Unknown Artist', bio: 'Here you can see all arts that have an unkown artist' }
         ]
     }
 ]

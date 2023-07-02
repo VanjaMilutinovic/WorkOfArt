@@ -1,7 +1,7 @@
 <template>
   <footer class="footer-footer" v-bind:class="rootClassName">
     <img :alt="image_alt" :src="image_src" class="footer-image" />
-    <span class="footer-text">{{ text }}</span>
+    <div class="footer-text">{{ text }}</div>
   </footer>
 </template>
 
@@ -19,7 +19,9 @@ export default {
     },
     text: {
       type: String,
-      default: 'Ovde ide zadati predifined tekst',
+      default: `Copyright 2023, Милица Бањац и Наталија Богдановић, 
+                Одсек за софтверско инжењерство Електротехничког факултета
+                Универзитета у Београду`,
     },
     rootClassName: String,
   },
@@ -45,6 +47,8 @@ export default {
 }
 .footer-text {
   color: #303030;
+  width: 75%;
+  justify-self: end;
 }
 .footer-root-class-name {
   left: 0px;
@@ -61,22 +65,7 @@ export default {
   bottom: 0px;
   position: static;
 }
-.footer-root-class-name3 {
-  left: 0px;
-  bottom: 0px;
-  position: static;
-}
-.footer-root-class-name4 {
-  left: 0px;
-  bottom: 0px;
-  position: static;
-  align-self: center;
-}
-.footer-root-class-name5 {
-  left: 0px;
-  bottom: 0px;
-  position: static;
-}
+
 .footer-root-class-name6 {
   left: 0px;
   bottom: 0px;

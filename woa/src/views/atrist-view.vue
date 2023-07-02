@@ -1,9 +1,15 @@
 <template>
   <div class="atrist-view-container">
-    <app-header rootClassName="header-root-class-name4"></app-header>
-    <artist-card-component></artist-card-component>
-    <artist-card-component></artist-card-component>
-    <artist-card-component></artist-card-component>
+    <app-header></app-header>
+    <div v-for="artist in this.all" :key="artist.id">
+      <ArtistCardComponent
+        :artist='artist.data[lang].name'
+        :description='artist.data[lang].bio'
+        :file_src='artist.pdf_src'
+        :image_src='artist.img_src'
+
+      ></ArtistCardComponent>
+    </div>
     <app-footer rootClassName="footer-root-class-name4"></app-footer>
   </div>
 </template>
@@ -12,6 +18,7 @@
 import AppHeader from '../components/header'
 import ArtistCardComponent from '../components/artist-card-component'
 import AppFooter from '../components/footer'
+import AllArtists from '../data/artists.js'
 
 export default {
   name: 'AtristView',
@@ -20,15 +27,17 @@ export default {
     ArtistCardComponent,
     AppFooter,
   },
-  metaInfo: {
-    title: 'AtristView - Work Of Art',
-    meta: [
-      {
-        property: 'og:title',
-        content: 'AtristView - Work Of Art',
-      },
-    ],
+  data(){
+    return{
+      all: [],
+      lang: 0
+    }
   },
+  created(){
+    this.all = AllArtists;
+    this.lang = localStorage.getItem('lang');
+  }
+
 }
 </script>
 

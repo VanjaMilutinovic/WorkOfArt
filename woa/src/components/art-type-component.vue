@@ -46,7 +46,7 @@ export default {
 .art-type-component-testimonial-card {
   display: flex;
   padding: 16px;
-  max-width: 1440px;
+  max-width: 100%;
   background: #fff;
   box-shadow: 15px 15px 20px 0px rgba(18, 18, 18, 0.1);
   align-items: center;

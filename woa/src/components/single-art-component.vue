@@ -43,10 +43,6 @@ export default {
       default: 'Van Gogh',
     },
   },
-  data() {
-    return {
-    }
-  },
 }
 </script>
 

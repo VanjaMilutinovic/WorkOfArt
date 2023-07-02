@@ -1,24 +1,25 @@
 <template>
   <div class="about-us-view-container">
     <app-header rootClassName="header-root-class-name"></app-header>
-    <h1 class="about-us-view-text">Ovo smo mi!</h1>
-    <span class="about-us-view-text1">Neki tekst o nama. Lorem ipsum</span>
-    <app-gallery rootClassName="gallery-root-class-name"></app-gallery>
-    <div class="about-us-view-banner">
-      <h2 class="about-us-view-text2">
-        <span>Ovo je umesto mape</span>
-        <br class="about-us-view-text4" />
-        <span><span v-html="rawmxb2"></span></span>
-      </h2>
+    <h1 class="about-us-view-text">{{ title[lang] }}</h1>
+    <span class="about-us-view-text1">{{ about[lang] }}</span>
+    <app-gallery :id="0"></app-gallery>
+
+    <div style="width: 90%">
+      <iframe width="100%" height="600" frameborder="0" scrolling="no" 
+        marginheight="0" marginwidth="0" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.7879795869853!2d20.473560975308626!3d44.80550937714732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7a9f5ee145d3%3A0x3ed89b5bb505d83!2sUniversity%20of%20Belgrade%20School%20of%20Electrical%20Engineering!5e0!3m2!1sen!2srs!4v1688261310919!5m2!1sen!2srs" >
+        <a href="https://www.maps.ie/distance-area-calculator.html">measure area map</a>
+      </iframe>
     </div>
+
     <h1 class="about-us-view-text6">
       <span>
-        Kontaktirajte nas!
-        <span v-html="raws67u"></span>
+        {{contact[lang]}}
       </span>
       <span class="about-us-view-text8">064 987 345</span>
     </h1>
-    <app-footer rootClassName="footer-root-class-name"></app-footer>
+    <app-footer></app-footer>
   </div>
 </template>
 
@@ -36,18 +37,14 @@ export default {
   },
   data() {
     return {
-      rawmxb2: ' ',
-      raws67u: ' ',
+      lang: 0,
+      contact: ['Kontaktirajte nas! ', 'Contact us! '],
+      about: ['o nama', 'about us'],
+      title: ['Ovo smo mi!', 'This is us!']
     }
   },
-  metaInfo: {
-    title: 'AboutUsView - Work Of Art',
-    meta: [
-      {
-        property: 'og:title',
-        content: 'AboutUsView - Work Of Art',
-      },
-    ],
+  created(){
+    this.lang = localStorage.getItem('lang')
   },
 }
 </script>
