@@ -73,46 +73,42 @@ export default {
   },
   methods: {
     sortBy() {
-      switch (this.choice) {
-    case 0:
-      // No sorting, show all arts as is
-      this.artShowing = this.allArts;
-      break;
-    case 1:
-      // Sort by author name
-      this.artShowing = this.allArts.slice().sort((a, b) => {
-        const authorA = a.data[this.lang].author.toLowerCase();
-        const authorB = b.data[this.lang].author.toLowerCase();
-        return authorA.localeCompare(authorB);
-      });
-      break;
-    case 2:
-      // Sort by title
-      this.artShowing = this.allArts.slice().sort((a, b) => {
-        const titleA = a.data[this.lang].title.toLowerCase();
-        const titleB = b.data[this.lang].title.toLowerCase();
-        return titleA.localeCompare(titleB);
-      });
-      break;
-    default:
-      break;
-  }
+
+      if (this.choice == 0) {
+        // No sorting, show all arts as is
+        this.artShowing = JSON.parse(localStorage.getItem('arts'));
+      }
+      else if (this.choice == 1) {
+        // Sort by author name
+        this.artShowing = this.allArts.sort((a, b) => {
+          const authorA = a.data[this.lang].author.toLowerCase();
+          const authorB = b.data[this.lang].author.toLowerCase();
+          return authorA < authorB ? -1 : 1;
+        });
+      }
+      else if (this.choice == 2) {
+        // Sort by title
+        this.artShowing = this.allArts.sort((a, b) => {
+          const titleA = a.data[this.lang].title.toLowerCase();
+          const titleB = b.data[this.lang].title.toLowerCase();
+          return titleA < titleB ? -1 : 1;
+        });
+      }
+
 
 
     },
     searchBy() {
-
-      const keyword = this.filter.toLowerCase().trim();
+      const keyword = this.filter.toLowerCase();
 
       // Filter arts based on the keyword
+
       const filteredArts = this.allArts.filter(art => {
-        const title = this.art.data[this.lang].title.toLowerCase();
-        const author = this.art.data[this.lang].author.toLowerCase();
-        const description = this.art.data[this.lang].description.toLowerCase();
-
-        return title.includes(keyword) || author.includes(keyword) || description.includes(keyword);
+        const title = art.data[this.lang].title.toLowerCase();
+        const author = art.data[this.lang].author.toLowerCase();
+        if (title.includes(keyword) || author.includes(keyword))
+          return art;
       });
-
       // Update the displayed arts
       this.artShowing = filteredArts;
     }
@@ -272,4 +268,5 @@ export default {
     padding-right: 16px;
     padding-bottom: 32px;
   }
-}</style>
+}
+</style>
