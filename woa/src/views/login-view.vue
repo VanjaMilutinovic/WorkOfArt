@@ -1,8 +1,8 @@
 <template>
   <div class="login-view-container">
-    <app-header rootClassName="header-root-class-name5"></app-header>
-    <login-component textinput_placeholder="ex. Milica"></login-component>
-    <app-footer rootClassName="footer-root-class-name5"></app-footer>
+    <app-header></app-header>
+    <login-component></login-component>
+    <app-footer></app-footer>
   </div>
 </template>
 

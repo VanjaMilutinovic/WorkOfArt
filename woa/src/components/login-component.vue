@@ -1,50 +1,37 @@
 <template>
   <div class="login-component-login-component">
-    <h1 class="login-component-text">{{ heading }}</h1>
-    <span class="login-component-text1">{{ text }}</span>
+    <h1 class="login-component-text">{{ content.heading[lang] }}</h1>
+    <span class="login-component-text1">{{ content.text[lang] }}</span>
     <input
       type="text"
       :placeholder="textinput_placeholder"
       class="login-component-textinput input"
+      name="username" v-model="username"
     />
-    <span class="login-component-text1">{{ text1 }}</span>
-    <input type="text" :placeholder="textinput_placeholder1" class=" login-component-textinput input" />
-    <button type="button" class="login-component-button button">
-      {{ button }}
+    <span class="login-component-text1">{{ content.text1[lang] }}</span>
+    <input type="text" :placeholder="textinput_placeholder1" class=" login-component-textinput input" 
+           name="password" v-model="password"/>
+    <button type="button" class="login-component-button button"
+            @click="login()">
+      {{ content.button[lang] }}
     </button>
     <router-link to="/registration-view" class="login-component-navlink">
       <span>
-        Nemas nalog?
-        <span v-html="rawtl8w"></span>
+        {{content.noAcc[lang]}}
       </span>
-      <span class="login-component-text4">Registruj se!</span>
+      <span class="login-component-text4">{{ content.register[lang] }}</span>
     </router-link>
   </div>
 </template>
 
 <script>
+import AllUsers from '../data/users.js'
 export default {
   name: 'LoginComponent',
   props: {
     textinput_placeholder: {
       type: String,
       default: 'ex. vanjy',
-    },
-    text: {
-      type: String,
-      default: 'Korisnicno ime\n',
-    },
-    text1: {
-      type: String,
-      default: 'Lozinka',
-    },
-    button: {
-      type: String,
-      default: 'Uloguj se\n',
-    },
-    heading: {
-      type: String,
-      default: 'Logovanje',
     },
     textinput_placeholder1: {
       type: String,
@@ -53,9 +40,46 @@ export default {
   },
   data() {
     return {
-      rawtl8w: ' ',
+      username: '',
+      password: '',
+      content: {
+        text: ['Korisnicko ime', 'Username'],
+        text1: ['Lozinka', 'Password'],
+        heading: ['Logovanje', 'Login'],
+        button: ['Uloguj se', 'Log in'],
+        noAcc: ['Nemas nalog? ', 'Dont have an account? '],
+        register: ['Registruj se!', 'Register!']
+      },
+      lang: 0,
+      users: []
     }
   },
+  created(){
+    this.lang = localStorage.getItem('lang')
+    if(localStorage.getItem('users')==null){
+      localStorage.setItem('users', JSON.stringify(AllUsers))
+      this.users=AllUsers
+    }
+    else
+      this.users = JSON.parse(localStorage.getItem('users'))
+
+  },
+  methods:{
+    login(){
+      //TODO provera this.username i this.password
+      //ako su prazni smara s greskom i return
+
+      //ako je uspesno
+      alert(this.username)
+      const user = this.users.find(user => user.username === this.username);
+      if(user==null){
+        alert('Korisnik ne postoji')
+        return;
+      }
+      localStorage.setItem('user', JSON.stringify(user))
+      this.$router.push('/my-account-view')
+    }
+  }
 }
 </script>
 

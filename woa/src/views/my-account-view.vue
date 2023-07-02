@@ -1,15 +1,18 @@
 <template>
   <div class="my-account-view-container">
     <app-header rootClassName="header-root-class-name6"></app-header>
-    <button type="button" class="my-account-view-button button">
-      Izloguj se
+    <button type="button" class="my-account-view-button button"
+          @click="logout()">
+      {{content.button[lang]}}
     </button>
-    <h1>Zdravo, Milice!</h1>
-    <span class="my-account-view-text1">Ne bi bilo lose neki tekstic ovde</span>
+    <h1>{{ content.text[lang] }} {{this.user.name}}!</h1>
+    <span class="my-account-view-text1">{{ content.text1[lang] }}</span>
+    
     <all-my-offers-component
       rootClassName="all-my-offers-component-root-class-name"
     ></all-my-offers-component>
-    <app-footer rootClassName="footer-root-class-name6"></app-footer>
+    
+    <app-footer></app-footer>
   </div>
 </template>
 
@@ -25,15 +28,32 @@ export default {
     AllMyOffersComponent,
     AppFooter,
   },
-  metaInfo: {
-    title: 'MyAccountView - Work Of Art',
-    meta: [
-      {
-        property: 'og:title',
-        content: 'MyAccountView - Work Of Art',
-      },
-    ],
+  data(){
+    return{
+      lang: 0,
+      user: {},
+      content: {
+        text: ['Zdravo, ', 'Hello, '],
+        text1: ['Ne bi bilo lose neki tekstic ovde', 'Some text here would be nice'],
+        button: ['Izloguj se', 'Log out']
+      }
+    }
   },
+  created(){
+    this.lang = localStorage.getItem('lang')
+    if(localStorage.getItem('user')==null){
+      this.$router.push('/login-view')
+      return;
+    }
+    this.user = JSON.parse(localStorage.getItem('user'))
+  },
+  methods:{
+    logout(){
+      localStorage.removeItem('user')
+      this.$router.push('/login-view')
+    }
+  }
+  
 }
 </script>
 

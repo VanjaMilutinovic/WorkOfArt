@@ -1,6 +1,6 @@
 <template>
   <div class="all-my-offers-component-art-offers" v-bind:class="rootClassName">
-    <h1 class="all-my-offers-component-text">{{ heading }}</h1>
+    <h1 class="all-my-offers-component-text">{{ heading[lang] }}</h1>
     <div class="all-my-offers-component-container">
       <my-art-offer-component
         rootClassName="my-art-offer-component-root-class-name"
@@ -19,16 +19,18 @@ import MyArtOfferComponent from './my-art-offer-component'
 
 export default {
   name: 'AllMyOffersComponent',
-  props: {
-    rootClassName: String,
-    heading: {
-      type: String,
-      default: 'Sve ponude',
-    },
-  },
   components: {
     MyArtOfferComponent,
   },
+  data(){
+    return{
+      lang: 0,
+      heading: ['Sve moje ponude i poruke', 'My all offers and messages']
+    }
+  },
+  created(){
+    this.lang = localStorage.getItem('lang')
+  }
 }
 </script>
 

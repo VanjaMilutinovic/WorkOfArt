@@ -1,11 +1,17 @@
 <template>
   <div class="art-all-offers-component-art-offers" v-bind:class="rootClassName">
     <h1 class="art-all-offers-component-text">{{ this.heading[this.lang] }}</h1>
-    <div class="art-all-offers-component-container">
-      <art-offer-component
-        profile_src="https://images.unsplash.com/photo-1611232658409-0d98127f237f?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDIzfHxwb3J0cmFpdCUyMHdvbWFufGVufDB8fHx8MTYyNjQ1MDU4MQ&amp;ixlib=rb-1.2.1&amp;h=1200"
-        rootClassName="rootClassName3"
-      ></art-offer-component>
+    <div class="art-all-offers-component-container" 
+          v-for="offer in this.allOffers" :key="offer.id">
+      <div v-if="offer.data[lang].title == this.title">
+        <ArtOfferComponent
+          :image_src='offer.image_src'
+          :by="offer.data[lang].user"
+          :description="offer.data[lang].description"
+        ></ArtOfferComponent>
+      </div>
+
+      
     </div>
     
   </div>
@@ -13,6 +19,7 @@
 
 <script>
 import ArtOfferComponent from './art-offer-component'
+import AllOffers from '../data/offers.js'
 
 export default {
   name: 'ArtAllOffersComponent',
@@ -29,11 +36,20 @@ export default {
   data(){
     return{
       lang: 0,
-      heading: ['Sve ponude i poruke', 'All offers and messages']
+      heading: ['Sve ponude i poruke', 'All offers and messages'],
+      allOffers: []
     }
   },
   created(){
     this.lang = localStorage.getItem('lang')
+    if(localStorage.getItem('offers')==null){
+      localStorage.setItem('offers', JSON.stringify(AllOffers
+      ));
+      this.allOffers = AllOffers
+    }
+    else
+      this.allOffers = JSON.parse(localStorage.getItem('offers'))
+   
   }
 }
 </script>

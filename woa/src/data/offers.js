@@ -6,8 +6,8 @@ const initialOffers = [
         image_src: '/2/0.jpg',
         type: 0,
         data: [
-            { title: 'naziv', author: 'umetnik', user: 'Vanjos', description: 'opis'},
-            { title: 'nazivENG', author: 'umetnikENG', user: 'VanjosENG', description: 'opisENG' }
+            { title: 'Stvaranje Adama', author: 'umetnik', user: 'Vanjos', description: 'opis'},
+            { title: 'The Creation of Adam', author: 'umetnikENG', user: 'VanjosENG', description: 'opisENG' }
         ]
     },
     {
@@ -15,8 +15,8 @@ const initialOffers = [
         image_src: '/2/0.jpg',
         type: 1,
         data: [
-            { title: 'Welcome to our platform!', author: 'Admin', user: 'Vanjos', description: 'message'},
-            { title: 'We have new features available. Check them out!', author: 'Admin', user: 'Vanjos', description: 'message' }
+            { title: 'Stvaranje Adama', author: 'Admin', user: 'Vanjos', description: 'message'},
+            { title: 'The Creation of Adam', author: 'Admin', user: 'Vanjos', description: 'message' }
         ]
     },
     {
@@ -25,8 +25,8 @@ const initialOffers = [
 
         type: 0,
         data: [
-            { title: 'Another Offer', author: 'Artist', user: 'Vanjos', description: 'Check out this amazing artwork!' },
-            { title: 'Another Offer - ENG', author: 'ArtistENG', user: 'VanjosENG', description: 'Check out this amazing artwork!' }
+            { title: 'Tajna večera', author: 'Artist', user: 'Vanjos', description: 'Check out this amazing artwork!' },
+            { title: 'The Secret Supper', author: 'ArtistENG', user: 'VanjosENG', description: 'Check out this amazing artwork!' }
         ]
     },
     {
@@ -34,8 +34,8 @@ const initialOffers = [
         image_src: '/4/0.jpg',
         type: 1,
         data: [
-            { title: 'Special discount available for a limited time!', author: 'Admin', user: 'Vanjos', description: 'message' },
-            { title: 'Get 20% off on your next purchase!', author: 'Admin', user: 'Vanjos', description: 'message' }
+            { title: 'Bista Nefertiti', author: 'Admin', user: 'Vanjos', description: 'message' },
+            { title: 'Bista Nefertiti', author: 'Admin', user: 'Vanjos', description: 'message' }
         ]
     },
     {
@@ -43,8 +43,8 @@ const initialOffers = [
         image_src: '/1/0.jpg',
         type: 0,
         data: [
-            { title: 'aaaaaaaaaaa', author: 'aaaaa', user: 'aaaaaa', description: 'aaaaaa'},
-            { title: 'aaaaaaa', author: 'aaaaaa', user: 'VanjosENG', description: 'aaaaaa' }
+            { title: 'Mona Liza', author: 'aaaaa', user: 'aaaaaa', description: 'aaaaaa'},
+            { title: 'Mona Lisa', author: 'aaaaaa', user: 'VanjosENG', description: 'aaaaaa' }
         ]
     },
     {
@@ -52,8 +52,8 @@ const initialOffers = [
         image_src: '/6/0.jpg',
         type: 0,
         data: [
-            { title: 'aaaaaaaaaaa', author: 'grgr', user: 'grgr', description: 'aaaaaa'},
-            { title: 'aaaaaaa', author: 'aaaaaa', user: 'VanjosENG', description: 'aaaaaa' }
+            { title: 'Nika sa Samotrake', author: 'grgr', user: 'grgr', description: 'aaaaaa'},
+            { title: 'Nike of Samothrace', author: 'aaaaaa', user: 'VanjosENG', description: 'aaaaaa' }
         ]
     },
     {
@@ -61,8 +61,8 @@ const initialOffers = [
         image_src: '/3/0.jpg',
         type: 0,
         data: [
-            { title: 'grgr', author: 'grgr', user: 'grgr', description: 'grgr'},
-            { title: 'grgr', author: 'grgr', user: 'grgr', description: 'grgr' }
+            { title: 'Tajna večera', author: 'grgr', user: 'grgr', description: 'grgr'},
+            { title: 'The Secret Supper', author: 'grgr', user: 'grgr', description: 'grgr' }
         ]
     }
 ];
