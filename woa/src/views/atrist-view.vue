@@ -35,7 +35,7 @@ export default {
   },
   created(){
     this.all = AllArtists;
-    this.lang = localStorage.getItem('lang');
+    this.lang = localStorage.getItem('lang') || 0;;
   }
 
 }

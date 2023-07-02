@@ -103,14 +103,15 @@ export default {
 
     },
     offer() {
-      const user = localStorage.getItem("user");
+      const user = JSON.parse(localStorage.getItem("user"));
 
       // Check if the user is logged in
       if (user !== null) {
 
         // Create the offer object
+       
         const offer = {
-          id:localStorage.getItem('offers').length + 1 ,
+          id:JSON.parse(localStorage.getItem('offers')).length +1,
           image_src: this.art.image_src,
           type: 0,
           data: [
@@ -139,14 +140,14 @@ export default {
       }
     },
     send() {
-      const user = localStorage.getItem("user");
+      const user = JSON.parse(localStorage.getItem("user"));
 
       // Check if the user is logged in
       if (user !== null) {
 
         // Create the offer object
         const offer = {
-          id: localStorage.getItem('offers').length + 1,
+          id: JSON.parse(localStorage.getItem('offers')).length +1,
           image_src: this.art.image_src,
           type: 1,
           data: [

@@ -11,7 +11,7 @@
     <all-my-offers-component
       rootClassName="all-my-offers-component-root-class-name"
     ></all-my-offers-component>
-    
+
     <app-footer></app-footer>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
     }
   },
   created(){
-    this.lang = localStorage.getItem('lang')
+    this.lang = localStorage.getItem('lang') || 0;
     if(localStorage.getItem('user')==null){
       this.$router.push('/login-view')
       return;

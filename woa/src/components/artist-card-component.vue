@@ -64,7 +64,7 @@ export default {
     }
   },
   created(){
-    this.lang = localStorage.getItem('lang')
+    this.lang = localStorage.getItem('lang') || 0;
   
   },
   methods:{

@@ -55,7 +55,7 @@ export default {
     }
   },
   created(){
-    this.lang = localStorage.getItem('lang')
+    this.lang = localStorage.getItem('lang') || 0;
     if(localStorage.getItem('users')==null){
       localStorage.setItem('users', JSON.stringify(AllUsers))
       this.users=AllUsers
