@@ -63,8 +63,10 @@ export default {
   justify-content: center;
 }
 .single-art-component-image {
-  width: 45rem;
-  margin-top: 32px;
+  max-height: 350px;
+  object-fit: cover;
+  max-width: 45rem;
+  margin-bottom: 32px;
 }
 .single-art-component-container {
   display: flex;
@@ -85,7 +87,7 @@ export default {
   margin-top: 32px;
   text-align: center;
   padding-left: 48px;
-  margin-bottom: 32px;
+  margin-bottom: 0px;
   padding-right: 48px;
 }
 
@@ -156,24 +158,6 @@ export default {
   }
   .single-art-component-container {
     margin-bottom: 16px;
-  }
-  .single-art-component-button {
-    margin-top: 16px;
-    margin-left: 0px;
-  }
-  .single-art-component-container1 {
-    margin-bottom: 16px;
-  }
-  .single-art-component-button1 {
-    margin-top: 16px;
-    margin-left: 0px;
-  }
-  .single-art-component-container2 {
-    margin-bottom: 16px;
-  }
-  .single-art-component-button2 {
-    margin-top: 16px;
-    margin-left: 0px;
   }
 }
 </style>

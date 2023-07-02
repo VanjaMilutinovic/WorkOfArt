@@ -39,7 +39,8 @@ export default {
     return {
       lang: 0,
       contact: ['Kontaktirajte nas! ', 'Contact us! '],
-      about: ['o nama', 'about us'],
+      about: ['Dobrodošli na našu veb galeriju, gde umetnost oživljava. Otkrijte raznoliku kolekciju fascinantnih umetničkih dela koja prikazuju talenat i kreativnost priznatih umetnika iz celog sveta. Prepustite se vizuelnom putovanju koje slavi lepotu i snagu umetničkog izraza.', 
+        'Welcome to our gallery website, where art comes to life. Discover a diverse collection of captivating artworks, showcasing the talent and creativity of renowned artists from around the world. Immerse yourself in a visual journey that celebrates the beauty and power of artistic expression.'],
       title: ['Ovo smo mi!', 'This is us!']
     }
   },
@@ -63,7 +64,9 @@ export default {
   color: #303030;
   margin: 32px;
 }
-.about-us-view-text1 {
+.about-us-view-text1 
+{
+  max-width: 85%;
   margin-left: 48px;
   margin-right: 48px;
 }

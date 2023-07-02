@@ -1,7 +1,7 @@
 <template>
   <footer class="footer-footer" v-bind:class="rootClassName">
     <img :alt="image_alt" :src="image_src" class="footer-image" />
-    <div class="footer-text">{{ text }}</div>
+    <div class="footer-text">{{ text[lang] }}</div>
   </footer>
 </template>
 
@@ -17,14 +17,18 @@ export default {
       type: String,
       default: '/new%20project-1500h.png',
     },
-    text: {
-      type: String,
-      default: `Copyright 2023, Милица Бањац и Наталија Богдановић, 
-                Одсек за софтверско инжењерство Електротехничког факултета
-                Универзитета у Београду`,
-    },
-    rootClassName: String,
   },
+  data(){
+    return{
+      lang: 0,
+      text: [`Copyright 2023, Милица Бањац и Наталија Богдановић, Одсек за софтверско инжењерство Електротехничког факултета Универзитета у Београду`,
+              `Copyright 2023, Milica Banjac and Natalija Bogdanović, Department of Software Engineering, Faculty of Electrical Engineering, University of Belgrade`]
+    }
+  },
+  created(){
+    this.lang = localStorage.getItem('lang') || 0;
+  
+  }
 }
 </script>
 
@@ -50,32 +54,8 @@ export default {
   width: 75%;
   justify-self: end;
 }
-.footer-root-class-name {
-  left: 0px;
-  bottom: 0px;
-  position: static;
-}
-.footer-root-class-name1 {
-  left: 0px;
-  bottom: 0px;
-  position: static;
-}
-.footer-root-class-name2 {
-  left: 0px;
-  bottom: 0px;
-  position: static;
-}
 
-.footer-root-class-name6 {
-  left: 0px;
-  bottom: 0px;
-  position: static;
-}
-.footer-root-class-name7 {
-  left: 0px;
-  bottom: 0px;
-  position: static;
-}
+
 @media(max-width: 767px) {
   .footer-footer {
     padding-left: 32px;

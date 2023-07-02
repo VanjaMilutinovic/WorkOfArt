@@ -1,52 +1,73 @@
+
 <template>
   <div class="my-art-offer-component-blog-post-card" v-bind:class="rootClassName">
-    <img
-      :alt="image_alt"
-      :src="image_src"
-      image_src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDd8fHBvcnRyYWl0fGVufDB8fHx8MTYyNjM3ODk3Mg&amp;ixlib=rb-1.2.1&amp;h=1000"
-      class="my-art-offer-component-image"
-    />
+    <div class="my-art-offer-component-image-container">
+      <img
+        :alt="offer.image_src"
+        :src="offer.image_src"
+        class="my-art-offer-component-image"
+      />
+    </div>
     <div class="my-art-offer-component-container">
       <div class="my-art-offer-component-container1">
-        <h1 class="my-art-offer-component-text">{{ description }}</h1>
-        <span class="my-art-offer-component-text1">{{ by }}</span>
+        <h1 class="my-art-offer-component-text">{{ offer.data[lang].description }}</h1>
+        <span class="my-art-offer-component-text1">{{ offer.data[lang].user }}</span>
       </div>
-      <button type="button" class="my-art-offer-component-button button">
-        {{ deleted }}
+      <button type="button" class="my-art-offer-component-button button" @click="deleteOffer()">
+        {{ deleted[lang] }}
       </button>
     </div>
   </div>
 </template>
 
+
+
 <script>
+import AllOF from '../data/offers.js'
+
 export default {
   name: 'MyArtOfferComponent',
   props: {
-    deleted: {
-      type: String,
-      default: 'Obrisi',
+    lang:{
+      type: Number,
+      required: true,
     },
-    by: {
-      type: String,
-      default: 'Milica',
+    offer: {
+      type: Object,
+      required: true,
     },
-    description: {
-      type: String,
-      default: '500$',
+    
+  },
+  data(){
+    return{
+      lang: 0,
+      deleted: ['Obrisi', 'Delete']
+    }
+  },
+  created(){
+    this.lang = localStorage.getItem('lang') || 0;
+  },
+  methods: {
+    deleteOffer() {
+      let offers = JSON.parse(localStorage.getItem('offers')) || AllOF;
+
+      const index = offers.findIndex(of => of.id === this.offer.id);
+
+      if (index !== -1) {
+        offers.splice(index, 1);
+
+        localStorage.setItem('offers', JSON.stringify(offers));
+        
+        location.reload();
+
+      }
     },
-    image_alt: {
-      type: String,
-      default: 'image',
-    },
-    image_src: {
-      type: String,
-      default:
-        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDd8fHBvcnRyYWl0fGVufDB8fHx8MTYyNjM3ODk3Mg&ixlib=rb-1.2.1&w=1500',
-    },
-    rootClassName: String,
   },
 }
 </script>
+
+
+
 
 <style scoped>
 .my-art-offer-component-blog-post-card {

@@ -77,11 +77,12 @@ export default {
 
       if (this.choice == 0) {
         // No sorting, show all arts as is
-        this.artShowing = JSON.parse(localStorage.getItem('arts'));
+        this.allArts=JSON.parse(localStorage.getItem('arts'));
+        this.artShowing = this.allArts.filter(art => art.type == this.type) 
       }
       else if (this.choice == 1) {
         // Sort by author name
-        this.artShowing = this.allArts.sort((a, b) => {
+        this.artShowing = this.artShowing.sort((a, b) => {
           const authorA = a.data[this.lang].author.toLowerCase();
           const authorB = b.data[this.lang].author.toLowerCase();
           return authorA < authorB ? -1 : 1;
@@ -89,7 +90,7 @@ export default {
       }
       else if (this.choice == 2) {
         // Sort by title
-        this.artShowing = this.allArts.sort((a, b) => {
+        this.artShowing = this.artShowing.sort((a, b) => {
           const titleA = a.data[this.lang].title.toLowerCase();
           const titleB = b.data[this.lang].title.toLowerCase();
           return titleA < titleB ? -1 : 1;

@@ -142,7 +142,7 @@ export default {
 .home-view-container1 {
   display: flex;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: 12px;
   flex-direction: column;
   justify-content: space-between;
 }

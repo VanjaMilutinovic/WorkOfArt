@@ -7,8 +7,10 @@
     </button>
     <h1>{{ content.text[lang] }} {{this.user.name}}!</h1>
     <span class="my-account-view-text1">{{ content.text1[lang] }}</span>
-    
+  
     <all-my-offers-component
+    :lang=lang
+    :user=user
       rootClassName="all-my-offers-component-root-class-name"
     ></all-my-offers-component>
 
@@ -34,7 +36,8 @@ export default {
       user: {},
       content: {
         text: ['Zdravo, ', 'Hello, '],
-        text1: ['Ne bi bilo lose neki tekstic ovde', 'Some text here would be nice'],
+        text1: ['Dobrodošli na našu veb galeriju, gde umetnost oživljava. Otkrijte raznoliku kolekciju fascinantnih umetničkih dela koja prikazuju talenat i kreativnost priznatih umetnika iz celog sveta. Prepustite se vizuelnom putovanju koje slavi lepotu i snagu umetničkog izraza.', 
+        'Welcome to our gallery website, where art comes to life. Discover a diverse collection of captivating artworks, showcasing the talent and creativity of renowned artists from around the world. Immerse yourself in a visual journey that celebrates the beauty and power of artistic expression.'],
         button: ['Izloguj se', 'Log out']
       }
     }

@@ -6,8 +6,8 @@ const initialOffers = [
         image_src: '/2/0.jpg',
         type: 0,
         data: [
-            { title: 'Stvaranje Adama', author: 'umetnik', user: 'Vanjos', description: 'opis'},
-            { title: 'The Creation of Adam', author: 'umetnikENG', user: 'VanjosENG', description: 'opisENG' }
+            { title: 'Stvaranje Adama', author: 'Mikelanđelo', user: 'Milica Banjac', description: '500$'},
+            { title: 'The Creation of Adam', author: 'Michelangelo', user: 'Milica Banjac', description: '500$' }
         ]
     },
     {
@@ -15,8 +15,8 @@ const initialOffers = [
         image_src: '/2/0.jpg',
         type: 1,
         data: [
-            { title: 'Stvaranje Adama', author: 'Admin', user: 'Vanjos', description: 'message'},
-            { title: 'The Creation of Adam', author: 'Admin', user: 'Vanjos', description: 'message' }
+            { title: 'Stvaranje Adama', author: 'Mikelanđelo', user: 'Milica Banjac', description: 'Pogledajte ovo1'},
+            { title: 'The Creation of Adam', author: 'Michelangelo', user: 'Milica Banjac', description: 'Check out this amazing artwork!' }
         ]
     },
     {
@@ -25,8 +25,8 @@ const initialOffers = [
 
         type: 0,
         data: [
-            { title: 'Tajna večera', author: 'Artist', user: 'Vanjos', description: 'Check out this amazing artwork!' },
-            { title: 'The Secret Supper', author: 'ArtistENG', user: 'VanjosENG', description: 'Check out this amazing artwork!' }
+            { title: 'Tajna večera', author: 'Leonardo da Vinči', user: 'Milica Banjac', description: '500$' },
+            { title: 'The Secret Supper', author: 'Leonardo da Vinci', user: 'Milica Banjac', description: '500$' }
         ]
     },
     {
@@ -34,8 +34,8 @@ const initialOffers = [
         image_src: '/4/0.jpg',
         type: 1,
         data: [
-            { title: 'Bista Nefertiti', author: 'Admin', user: 'Vanjos', description: 'message' },
-            { title: 'Bista Nefertiti', author: 'Admin', user: 'Vanjos', description: 'message' }
+            { title: 'Bista Nefertiti', author: 'Nepoznati autor', user: 'Milica Banjac', description: 'message text' },
+            { title: 'Bista Nefertiti', author: 'Unknown artist', user: 'Milica Banjac', description: 'message text' }
         ]
     },
     {
@@ -43,8 +43,8 @@ const initialOffers = [
         image_src: '/1/0.jpg',
         type: 0,
         data: [
-            { title: 'Mona Liza', author: 'aaaaa', user: 'aaaaaa', description: 'aaaaaa'},
-            { title: 'Mona Lisa', author: 'aaaaaa', user: 'VanjosENG', description: 'aaaaaa' }
+            { title: 'Mona Liza', author: 'Leonardo da Vinči', user: 'Milica Banjac', description: '150 000 RSD'},
+            { title: 'Mona Lisa', author: 'Leonardo da Vinci', user: 'Milica Banjac', description: '150 000 RSD' }
         ]
     },
     {
@@ -52,8 +52,8 @@ const initialOffers = [
         image_src: '/6/0.jpg',
         type: 0,
         data: [
-            { title: 'Nika sa Samotrake', author: 'grgr', user: 'grgr', description: 'aaaaaa'},
-            { title: 'Nike of Samothrace', author: 'aaaaaa', user: 'VanjosENG', description: 'aaaaaa' }
+            { title: 'Nika sa Samotrake', author: 'Nepoznati autor', user: 'Milica Banjac', description: '1500 EUR'},
+            { title: 'Nike of Samothrace', author: 'Unknown author', user: 'Milica Banjac', description: '1500 EUR' }
         ]
     },
     {
@@ -61,8 +61,8 @@ const initialOffers = [
         image_src: '/3/0.jpg',
         type: 0,
         data: [
-            { title: 'Tajna večera', author: 'grgr', user: 'grgr', description: 'grgr'},
-            { title: 'The Secret Supper', author: 'grgr', user: 'grgr', description: 'grgr' }
+            { title: 'Tajna večera', author: 'Leonardo da Vinči', user: 'Natalija Bogdanovic', description: '65 000 RSD'},
+            { title: 'The Secret Supper', author: 'Leonardo da Vinci', user: 'Natalija Bogdanovic', description: '65 000 RSD' }
         ]
     }
 ];

@@ -2,22 +2,17 @@
   <div class="login-component-login-component">
     <h1 class="login-component-text">{{ content.heading[lang] }}</h1>
     <span class="login-component-text1">{{ content.text[lang] }}</span>
-    <input
-      type="text"
-      :placeholder="textinput_placeholder"
-      class="login-component-textinput input"
-      name="username" v-model="username"
-    />
+    <input type="text" :placeholder="textinput_placeholder" class="login-component-textinput input" name="username"
+      v-model="username" />
     <span class="login-component-text1">{{ content.text1[lang] }}</span>
-    <input type="text" :placeholder="textinput_placeholder1" class=" login-component-textinput input" 
-           name="password" v-model="password"/>
-    <button type="button" class="login-component-button button"
-            @click="login()">
+    <input type="text" :placeholder="textinput_placeholder1" class=" login-component-textinput input" name="password"
+      v-model="password" />
+    <button type="button" class="login-component-button button" @click="login()">
       {{ content.button[lang] }}
     </button>
     <router-link to="/registration-view" class="login-component-navlink">
       <span>
-        {{content.noAcc[lang]}}
+        {{ content.noAcc[lang] }}
       </span>
       <span class="login-component-text4">{{ content.register[lang] }}</span>
     </router-link>
@@ -31,7 +26,7 @@ export default {
   props: {
     textinput_placeholder: {
       type: String,
-      default: 'ex. vanjy',
+      default: 'ex. mica',
     },
     textinput_placeholder1: {
       type: String,
@@ -54,30 +49,51 @@ export default {
       users: []
     }
   },
-  created(){
+  created() {
     this.lang = localStorage.getItem('lang') || 0;
-    if(localStorage.getItem('users')==null){
+    if (localStorage.getItem('users') == null) {
       localStorage.setItem('users', JSON.stringify(AllUsers))
-      this.users=AllUsers
+      this.users = AllUsers
     }
     else
       this.users = JSON.parse(localStorage.getItem('users'))
 
   },
-  methods:{
-    login(){
-      //TODO provera this.username i this.password
-      //ako su prazni smara s greskom i return
+  methods: {
+    login() {
+      if (this.username && this.password) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
 
-      //ako je uspesno
-      alert(this.username)
-      const user = this.users.find(user => user.username === this.username);
-      if(user==null){
-        alert('Korisnik ne postoji')
-        return;
+        const user = users.find(user => user.username === this.username);
+        if (!user) {
+          if(this.lang==0){
+            alert('Korisnik ne postoji');
+          }
+          else{
+            alert('User does not exist');
+          }
+          return;
+        }
+
+        if (user.password !== this.password) {
+          if(this.lang==0){
+            alert('Pogresna lozinka');
+          }
+          else{
+            alert('Wrong password');
+          }
+          return;
+        }
+
+        localStorage.setItem('user', JSON.stringify(user));
+        this.$router.push('/my-account-view');
+      } 
+      else{
+        if(this.lang==0)
+          alert('Morate popuniti sva polja');
+        else
+          alert('You must fill all fields');
       }
-      localStorage.setItem('user', JSON.stringify(user))
-      this.$router.push('/my-account-view')
     }
   }
 }
@@ -97,22 +113,26 @@ export default {
   flex-direction: column;
   background-color: #edc0f1;
 }
+
 .login-component-text {
   color: rgb(48, 48, 48);
   align-self: center;
   margin-bottom: 16px;
 }
+
 .login-component-textinput {
   width: 100%;
   padding: 8px;
   border: 1px solid #303030;
   border-radius: 8px;
 }
+
 .login-component-text1 {
   margin-top: 24px;
   color: rgb(48, 48, 48);
   align-self: flex-start;
 }
+
 .login-component-button {
   transition: 0.3s;
   margin: 16px;
@@ -124,11 +144,13 @@ export default {
   background-color: #303030;
   border-radius: 8px;
 }
+
 .login-component-navlink {
   align-self: center;
   text-align: center;
   text-decoration: none;
 }
+
 .login-component-text4 {
   text-decoration: underline;
 }

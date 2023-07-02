@@ -91,7 +91,8 @@ export default {
   font-weight: 500;
 }
 .art-overview-card-component1-image {
-  width: 500px;
+  max-height: 400px;
+  max-width: 500px;
   object-fit: cover;
 }
 .art-overview-card-component1-root-class-name1 {

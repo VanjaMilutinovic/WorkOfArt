@@ -3,12 +3,11 @@
     <h1 class="all-my-offers-component-text">{{ heading[lang] }}</h1>
     <div class="all-my-offers-component-container">
       <my-art-offer-component
+        v-for="offer in filteredOffers"
+        :key="offer.id"
+        :offer="offer"
+        :lang="lang"
         rootClassName="my-art-offer-component-root-class-name"
-      ></my-art-offer-component>
-    </div>
-    <div class="all-my-offers-component-container1">
-      <my-art-offer-component
-        rootClassName="my-art-offer-component-root-class-name1"
       ></my-art-offer-component>
     </div>
   </div>
@@ -16,21 +15,37 @@
 
 <script>
 import MyArtOfferComponent from './my-art-offer-component'
-
+import AllOF from '../data/offers.js'
 export default {
   name: 'AllMyOffersComponent',
   components: {
     MyArtOfferComponent,
   },
-  data(){
-    return{
-      lang: 0,
-      heading: ['Sve moje ponude i poruke', 'My all offers and messages']
+  props: {
+    lang: {
+      type: Number,
+      required: true,
+    },
+    user: {
+      type: Object,
+      required: true,
+    },
+    rootClassName: String,
+
+  },
+  data() {
+    return {
+      heading: ['Sve moje ponude i poruke', 'My all offers and messages'],
+      offers: [],
+      filteredOffers:[]
     }
   },
-  created(){
-    this.lang = localStorage.getItem('lang')
-  }
+  created() {
+    this.offers = JSON.parse(localStorage.getItem('offers')) || AllOF;
+    this.filteredOffers = this.offers.filter(offer => offer.data[this.lang].user === this.user.name)
+    
+  },
+  
 }
 </script>
 
@@ -46,11 +61,13 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .all-my-offers-component-text {
   color: rgb(48, 48, 48);
   padding: 16px;
   padding-left: 16px;
 }
+
 .all-my-offers-component-container {
   width: 100%;
   display: flex;
@@ -60,6 +77,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .all-my-offers-component-container1 {
   width: 100%;
   display: flex;
@@ -76,6 +94,7 @@ export default {
     padding-right: 32px;
   }
 }
+
 @media(max-width: 479px) {
   .all-my-offers-component-art-offers {
     padding-top: 32px;

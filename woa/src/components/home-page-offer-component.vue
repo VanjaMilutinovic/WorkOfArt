@@ -37,8 +37,7 @@ export default {
     },
     image_src: {
       type: String,
-      default:
-        'https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDF8fHdvcmtpbmclMjBkZXNrfGVufDB8fHx8MTYyNjI1MDYwMg&ixlib=rb-1.2.1&h=1200',
+      default: '/1/0.jpg'
     },
     rootClassName: String,
     title: {
@@ -57,18 +56,19 @@ export default {
 .home-page-offer-component-blog-post-card {
   width: 100%;
   display: flex;
-  max-width: 1440px;
   flex-direction: row;
   justify-content: center;
 }
 .home-page-offer-component-image {
   max-width: 80%;
   object-fit: cover;
+  max-height: 350px;
 }
 .home-page-offer-component-container {
   flex: 1;
   display: flex;
   padding: 32px;
+  padding-bottom: 0px;
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
@@ -77,16 +77,16 @@ export default {
   color: #595959;
   font-style: normal;
   font-weight: 600;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   text-transform: uppercase;
 }
 .home-page-offer-component-text1 {
-  margin-bottom: 48px;
+  margin-bottom: 12px;
 }
 .home-page-offer-component-container1 {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 48px;
+  margin-bottom: 12px;
   flex-direction: column;
   justify-content: flex-start;
 }

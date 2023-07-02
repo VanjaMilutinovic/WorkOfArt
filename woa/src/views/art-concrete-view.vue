@@ -41,7 +41,7 @@
     </div>
 
     <AppGallery :id='this.id'></AppGallery>
-    <app-footer rootClassName="footer-root-class-name1"></app-footer>
+    <app-footer></app-footer>
   </div>
 </template>
 
@@ -109,19 +109,31 @@ export default {
       if (user !== null) {
 
         // Create the offer object
-       
+        let oferi=JSON.parse(localStorage.getItem('offers'))
+        if(oferi==null){
+          oferi=1
+        
+        }
+        else{
+          oferi=oferi.length+1
+        }
         const offer = {
-          id:JSON.parse(localStorage.getItem('offers')).length +1,
+          id:oferi ,
           image_src: this.art.image_src,
           type: 0,
           data: [
             {
-              title: this.art.data[this.lang].title,
-              author: this.art.data[this.lang].author,
+              title: this.art.data[0].title,
+              author: this.art.data[0].author,
               user: user.name,
               description: this.offerText
             },
-
+            {
+              title: this.art.data[1].title,
+              author: this.art.data[1].author,
+              user: user.name,
+              description: this.offerText
+            },
           ]
         };
 
@@ -133,9 +145,18 @@ export default {
 
         // Update the offers in localStorage
         localStorage.setItem("offers", JSON.stringify(offers));
+        this.offerText=''
+        if(this.lang==0){
+          alert('Ponuda poslata')
+        }
+        else{
+          alert('Offer sent')
+        }
+        location.reload();
+
       }
       else {
-        this.$router.push('/login');
+        this.$router.push('/login-view')
 
       }
     },
@@ -146,18 +167,31 @@ export default {
       if (user !== null) {
 
         // Create the offer object
+        let oferi=JSON.parse(localStorage.getItem('offers'))
+        if(oferi==null){
+          oferi=1
+        
+        }
+        else{
+          oferi=oferi.length+1
+        }
         const offer = {
-          id: JSON.parse(localStorage.getItem('offers')).length +1,
+          id:oferi,
           image_src: this.art.image_src,
           type: 1,
           data: [
             {
-              title: this.art.data[this.lang].title,
-              author: this.art.data[this.lang].author,
+              title: this.art.data[0].title,
+              author: this.art.data[0].author,
               user: user.name,
               description: this.messageText
             },
-
+            {
+              title: this.art.data[1].title,
+              author: this.art.data[1].author,
+              user: user.name,
+              description: this.messageText
+            },
           ]
         };
 
@@ -169,9 +203,18 @@ export default {
 
         // Update the offers in localStorage
         localStorage.setItem("offers", JSON.stringify(offers));
+        this.messageText=''
+        if(this.lang==0){
+          alert('Poruka poslata')
+        }
+        else{
+          alert('Message sent')
+        }
+        location.reload();
+
       }
       else {
-        this.$router.push('/login');
+        this.$router.push('/login-view')
 
       }
     }
@@ -189,10 +232,8 @@ export default {
 }
 
 .art-concrete-view-text14 {
-  margin-top: 32px;
   text-align: center;
   padding-left: 48px;
-  margin-bottom: 32px;
   padding-right: 48px;
 }
 
@@ -205,16 +246,15 @@ export default {
 }
 
 .art-concrete-view-text08 {
-  margin-top: 32px;
   text-align: center;
   padding-left: 48px;
-  margin-bottom: 32px;
   padding-right: 48px;
 }
 
 .art-concrete-view-button {
   transition: 0.3s;
   margin: 16px;
+  margin-top: 0px;
   padding: 12px;
   color: #ffffff;
 
@@ -241,8 +281,6 @@ export default {
 .offers-and-messages {
   width: 100%;
   display: flex;
-  padding: 48px;
-  padding-top: 0px;
   position: relative;
   min-height: 80vh;
   align-items: center;
