@@ -110,7 +110,7 @@ export default {
 
         // Create the offer object
         const offer = {
-          id: this.id,
+          id:localStorage.getItem('offers').length + 1 ,
           image_src: this.art.image_src,
           type: 0,
           data: [
@@ -146,7 +146,7 @@ export default {
 
         // Create the offer object
         const offer = {
-          id: this.id,
+          id: localStorage.getItem('offers').length + 1,
           image_src: this.art.image_src,
           type: 1,
           data: [
